@@ -1,0 +1,1 @@
+./boot.sh SPMTrack dinov2 --output_dir ./output --mixin got10k

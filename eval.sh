@@ -1,0 +1,1 @@
+./boot.sh SPMTrack dinov2 --output_dir ./output --disable_wandb --mixin evaluation --weight_path ./spmtrack_base.bin

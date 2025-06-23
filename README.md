@@ -1,3 +1,3 @@
 # SPMTrack
 
-The source code will be released after CVPR conference. Thanks for your attention！
+The details of README will be released soon!

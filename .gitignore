@@ -638,7 +638,6 @@ FodyWeavers.xsd
 /.idea
 /logging
 /wandb
-/consts.yaml
 my-run.sh
 output/
 *.np

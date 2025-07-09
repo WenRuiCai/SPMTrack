@@ -10,23 +10,16 @@ datasets:
   #  splits:
   #    - "test"
 
-  #- name: "LaSOT"
-  #  type: "SOT"
-  #  splits:
-  #    - "test"
-
-  #- name: "LaSOT_Extension"
-  #  type: "SOT"
-
-  #- name: "TrackingNet"
-  #  type: "SOT"
-  #  splits:
-  #    - "test"
-#
-  - name: "UAV123"
+  - name: "LaSOT"
     type: "SOT"
+    splits:
+      - "test"
+
+  - name: "TrackingNet"
+    type: "SOT"
+    splits:
+      - "test"
 
   #- name: "UAV123"
   #  type: "SOT"
-  #  splits:
-  #    - "test"
+

@@ -2,7 +2,13 @@
 
 Official implementation of [SPMTrack: Spatio-Temporal Parameter-Efficient Fine-Tuning with Mixture of Experts for Scalable Visual Tracking](https://arxiv.org/abs/2503.18338). (CVPR 2025)
 
-
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spmtrack-spatio-temporal-parameter-efficient/visual-object-tracking-on-lasot)](https://paperswithcode.com/sota/visual-object-tracking-on-lasot?p=spmtrack-spatio-temporal-parameter-efficient)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spmtrack-spatio-temporal-parameter-efficient/visual-object-tracking-on-otb-2015)](https://paperswithcode.com/sota/visual-object-tracking-on-otb-2015?p=spmtrack-spatio-temporal-parameter-efficient)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spmtrack-spatio-temporal-parameter-efficient/visual-object-tracking-on-tnl2k)](https://paperswithcode.com/sota/visual-object-tracking-on-tnl2k?p=spmtrack-spatio-temporal-parameter-efficient)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spmtrack-spatio-temporal-parameter-efficient/visual-object-tracking-on-trackingnet)](https://paperswithcode.com/sota/visual-object-tracking-on-trackingnet?p=spmtrack-spatio-temporal-parameter-efficient)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spmtrack-spatio-temporal-parameter-efficient/visual-object-tracking-on-got-10k)](https://paperswithcode.com/sota/visual-object-tracking-on-got-10k?p=spmtrack-spatio-temporal-parameter-efficient)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spmtrack-spatio-temporal-parameter-efficient/visual-object-tracking-on-uav123)](https://paperswithcode.com/sota/visual-object-tracking-on-uav123?p=spmtrack-spatio-temporal-parameter-efficient)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spmtrack-spatio-temporal-parameter-efficient/visual-object-tracking-on-needforspeed)](https://paperswithcode.com/sota/visual-object-tracking-on-needforspeed?p=spmtrack-spatio-temporal-parameter-efficient)
 
 ### ⭐Introduction
 
@@ -24,9 +30,9 @@ You can download the model weights and raw_result from [Google Drive](https://dr
 
 | Tracker        | #Params     | #Trainable Params | LaSOT (AUC / Norm P/ P) | GOT-10K (AO / SR0.5 / SR0.75) | TrackingNet (AUC / Norm P/ P) |
 | -------------- | ----------- | ----------------- | ----------------------- | ----------------------------- | ----------------------------- |
-| **SPMTrack-B** | **115.3M**  | **29.2**          | **74.9/84.0/81.7**      | **76.5/85.9/76.3**            | **86.1/90.2/85.6**            |
-| **SPMTrack-L** | **379.6M**  | **75.9**          | **76.8/85.9/84.0**      | **80.0/89.4/79.9**            | **86.9/91.0/87.2**            |
-| **SPMTrack-G** | **1339.5M** | **204.0**         | **77.4/86.6/85.0**      | **81.0/89.2/82.3**            | **87.3/91.4/88.1**            |
+| **SPMTrack-B** | **115.3M**  | **29.2M**          | **74.9/84.0/81.7**      | **76.5/85.9/76.3**            | **86.1/90.2/85.6**            |
+| **SPMTrack-L** | **379.6M**  | **75.9M**          | **76.8/85.9/84.0**      | **80.0/89.4/79.9**            | **86.9/91.0/87.2**            |
+| **SPMTrack-G** | **1339.5M** | **204.0M**         | **77.4/86.6/85.0**      | **81.0/89.2/82.3**            | **87.3/91.4/88.1**            |
 
 Our code will automatically calculate flops during operation. Using different numbers of reference frames will result in different amounts of computation. You can adjust it as you like.
 

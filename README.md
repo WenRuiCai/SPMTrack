@@ -26,7 +26,9 @@ At the same time, we extend relation modeling from image pairs to spatio-tempora
 
 You can download the model weights and raw_result from [Google Drive](https://drive.google.com/drive/folders/1bPnVG7ZcTNHgRgVf7Jydp9zFwdQf-3bV?usp=sharing).
 
-**TODO:** - [ ] Upload Trained Model Weights.
+**TODO:** 
+- [√] Upload SPMTrack-B Trained Model Weights and Training Logs.
+- [ ] Since uploading resources requires going through the approval process, we will make all versions of the trained weights open-source as quickly as possible.
 
 | Tracker        | #Params     | #Trainable Params | LaSOT (AUC / Norm P/ P) | GOT-10K (AO / SR0.5 / SR0.75) | TrackingNet (AUC / Norm P/ P) |
 | -------------- | ----------- | ----------------- | ----------------------- | ----------------------------- | ----------------------------- |
@@ -117,7 +119,11 @@ For convenience, you can just run `bash train.sh`  to start training SPMTrack-B.
 ```
 You can set the default settings, e.g. `output_dir`, in ```boot.sh```.
 
+You may encounter the Nan Loss issue during training. We recommend: First, try more times; second, use the following command to disable torch.compile, which can further improve stability.
 
+```shell
+./boot.sh SPMTrack dinov2 --output_dir /path/to/output --mixin disable_torch_compile
+```
 
 ### Evaluation
 

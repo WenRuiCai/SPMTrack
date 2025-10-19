@@ -22,7 +22,8 @@ def build_one_stream_tracker_pipeline(pipeline_config: dict, config: dict, devic
                                         device) if 'segmentify' in pipeline_config else None,
         common_config['interpolation_mode'], common_config['interpolation_align_corners'],
         common_config['normalization'],
-        visualization)
+        visualization,
+        config['name'])
 
     pipelines = [main_pipeline]
 
@@ -37,7 +38,7 @@ def _build_plugins(plugins_config, config, device):
     for plugin_config in plugins_config:
         if plugin_config['type'] == 'template_foreground_indicating_mask_generation':
             from .._common.template_foreground_indicating_mask_generation import TemplateFeatForegroundMaskGeneration
-            pipelines.append(TemplateFeatForegroundMaskGeneration(config['common']['template_size'], config['common']['template_feat_size'], device))
+            pipelines.append(TemplateFeatForegroundMaskGeneration(config['common']['template_size'], config['common']['template_feat_size'], device, config['name']))
         else:
             raise ValueError('Unknown plugin type: {}'.format(plugin_config['type']))
     return pipelines

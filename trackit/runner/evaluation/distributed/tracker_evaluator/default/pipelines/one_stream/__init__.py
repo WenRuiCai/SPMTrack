@@ -29,7 +29,7 @@ class OneStreamTracker_Evaluation_MainPipeline(TrackerEvaluationPipeline):
                  model_output_post_process: TrackerOutputPostProcess,
                  segmentify_post_process: Optional[Segmentify_PostProcessor],
                  interpolation_mode: str, interpolation_align_corners: bool,
-                 norm_stats_dataset_name: str, visualization: bool):
+                 norm_stats_dataset_name: str, visualization: bool, model_type: str):
         self.template_image_size = template_image_size
         self.search_region_image_size = search_region_image_size
 
@@ -42,6 +42,7 @@ class OneStreamTracker_Evaluation_MainPipeline(TrackerEvaluationPipeline):
         self.device = device
         self.image_normalization_transform_ = get_dataset_norm_stats_transform(norm_stats_dataset_name, inplace=True)
         self.visualization = visualization
+        self.model_type = model_type
 
     def start(self, max_batch_size: int, global_shared_objects):
         template_shape = (3, self.template_image_size[1], self.template_image_size[0])
@@ -152,7 +153,10 @@ class OneStreamTracker_Evaluation_MainPipeline(TrackerEvaluationPipeline):
                 model_input_params['z_2'].append(self.memory_frames[task_id][2].to(x.device))
             else:
                 track_context = context.input_data.tasks[i].tracker_do_tracking_context
-                seleted_indexes = self.select_memory_frames(track_context.frame_index)
+                assert task_id == context.input_data.tasks[i].id
+                track_info = context.all_tracks[task_id]
+                dataset = track_info.sequence_info.dataset_name
+                seleted_indexes = self.select_memory_frames(track_context.frame_index, dataset)
                 for i_selected, idx_selected in enumerate(seleted_indexes):
                     z_i = self.memory_frames[task_id][idx_selected].to(x.device)
                     model_input_params['z_' + str(i_selected)].append(z_i)
@@ -162,14 +166,20 @@ class OneStreamTracker_Evaluation_MainPipeline(TrackerEvaluationPipeline):
         model_input_params['z_2'] = torch.stack(model_input_params['z_2'], dim=0)
 
     @functools.lru_cache()
-    def select_memory_frames(self, cur_frame_idx):
+    def select_memory_frames(self, cur_frame_idx, dataset_name):
         num_segments = 2
         assert cur_frame_idx > num_segments
         dur = cur_frame_idx // num_segments
-        indexes = np.concatenate([
-            np.array([0]),
-            np.array(list(range(num_segments))) * dur + dur // 2
-        ])
+        if dataset_name == 'LaSOT' and 'B-378' in self.model_type:
+            indexes = np.concatenate([
+                np.array([0]),
+                np.array([cur_frame_idx // 3, 2 * cur_frame_idx // 3])
+            ])
+        else:
+            indexes = np.concatenate([
+                np.array([0]),
+                np.array(list(range(num_segments))) * dur + dur // 2
+            ])
         indexes = np.unique(indexes)
         return list(indexes)
 

@@ -157,7 +157,8 @@ def _load_state_dict(model: nn.Module, state_dict: Mapping[str, Any], strict: bo
 
 def _load_state_dict_from_file(model: nn.Module, state_file: str, strict: bool = False, print_missing: bool = True, use_safetensors: bool = True):
     if use_safetensors:
-        missing, unexpected = safetensors.torch.load_model(model, state_file, strict=strict)
+        state_dict = safetensors.torch.load_file(state_file)
+        missing, unexpected = model.load_state_dict(state_dict, strict=strict)
     else:
         missing, unexpected = model.load_state_dict(torch.load(state_file, map_location='cpu'), strict=strict)
     if len(missing) > 0 and print_missing:
